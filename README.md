@@ -1,3 +1,57 @@
+iCE40 Linux on machdyne bonbon
+==============================
+
+
+This is a machdyne bonbon hack. Performance wasn't the goal. 
+I wanted to learn howto migrate to a psram based system without
+crossdomains etc. I removed the hyperram stuff, the rgb controller
+and using only on system clock of 24MHz.
+
+The building procedure is the same like described in the origin ice40linux.
+I built the bitstream image with yosys 0.17 because the newest versions have an
+issue with icebram. To avoid building - check the prebuilts described below!
+
+You need two nor pmods! One for bitstream and one for linux system (256MBit)
+Flash 256MBit following images
+------------------------------
+The 256Mbit assigned to PMOD_A1-PMOD_A4.
+```bash
+# ldprog -b -f buildroot/output/images/rootfs.ubi 600000
+# ldprog -b -f buildroot/output/images/Image 40000
+# ldprog -b -f iCE40linux/firmware/dt/ice40linux.dtb 30000
+# ldprog -b -f iCE40linux/firmware/bios/bios.bin 20000
+```
+
+Flash bitstream nor
+```bash
+-------------
+# ldprog -b -f iCE40linux/gateware/riscv_linux/build-tmp/riscv_linux_init.bin
+```
+
+or pre-builts
+-------------
+
+### nor for pmod
+```bash
+# ldprog -b -f images/machdyne_bonbon/rootfs.ubi 600000
+# ldprog -b -f images/machdyne_bonbon/Image 40000
+# ldprog -b -f images/machdyne_bonbon/ice40linux.dtb 30000
+# ldprog -b -f images/machdyne_bonbon/bios.bin 20000
+```
+
+#### nor for bitstream
+```bash
+# ldprog -b -f images/machdyne_bonbon/riscv_linux_init.bin
+```
+uart
+----
+
+* 1000000 Baudrate, 8bit, 1 stop
+* tx # PMOD_A8
+* rx # PMOD_A9
+
+
+
 iCE40 Linux
 ===========
 

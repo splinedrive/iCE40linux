@@ -20,10 +20,10 @@
 	cpus {
 		#address-cells = <0x1>;
 		#size-cells = <0x0>;
-		timebase-frequency = <15000000>;
+		timebase-frequency = <24000000>;
 
 		cpu@0 {
-			clock-frequency = <15000000>;
+			clock-frequency = <24000000>;
 			compatible = "spinalhdl,vexriscv", "sifive,rocket0", "riscv";
 			d-tlb-sets = <0x1>;
 			d-tlb-size = <0x20>;
@@ -67,7 +67,7 @@
 	soc {
 		#address-cells = <0x1>;
 		#size-cells = <0x1>;
-		bus-frequency = <15000000>;
+		bus-frequency = <24000000>;
 		compatible = "simple-bus";
 		ranges;
 
@@ -85,13 +85,21 @@
 			status = "okay";
 		};
 
+		no2uart1: uart@83000000 {
+			device_type = "serial";
+			compatible = "no2fpga,no2uart1";
+			reg = <0x83000000 0x100>;
+			status = "okay";
+		};
+              
+
 		no2spi0: spi@82000000 {
 			compatible = "no2fpga,no2spi-simple";
 			reg = <0x82000000 0x100>;
 			status = "okay";
 
 			no2fpga,num-cs = <2>;
-			no2fpga,sck-frequency = <15000000>;
+			no2fpga,sck-frequency = <24000000>;
 
 			#address-cells = <1>;
 			#size-cells    = <0>;
@@ -132,46 +140,46 @@
 			spidev0: spidev@1 {
 				compatible = "linux,spidev";
 				reg = <1>;
-				spi-max-frequency = <15000000>;
+				spi-max-frequency = <24000000>;
 				status = "okay";
 			 };
 		 };
 
-		no2rgb0: rgb@83000000 {
-			compatible = "no2fpga,no2ice40-rgb";
-			reg = <0x83000000 0x100>;
-			status = "okay";
-
-			timebase-frequency = <15000000>;
-			no2,hw-blink = <1>;
-
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			led@0 {
-				label = "blue";
-				reg = <0>;
-				color = <3>; // LED_COLOR_ID_BLUE
-				linux,default-trigger = "heartbeat";
-				blink-brightness = <20>;
-			};
-
-			led@1 {
-				label = "green";
-				reg = <1>;
-				color = <2>; // LED_COLOR_ID_GREEN
-				linux,default-trigger = "mtd";
-				blink-brightness = <20>;
-			};
-
-			led@2 {
-				label = "red";
-				reg = <2>;
-				color = <1>; // LED_COLOR_ID_RED
-				linux,default-trigger = "panic";
-				// panic trigger doesn't support brightness control ... none/full only
-			};
-		 };
+//		no2rgb0: rgb@83000000 {
+//			compatible = "no2fpga,no2ice40-rgb";
+//			reg = <0x83000000 0x100>;
+//			status = "disabled";
+//
+//			timebase-frequency = <24000000>;
+//			no2,hw-blink = <1>;
+//
+//			#address-cells = <1>;
+//			#size-cells = <0>;
+//
+//			led@0 {
+//				label = "blue";
+//				reg = <0>;
+//				color = <3>; // LED_COLOR_ID_BLUE
+//				linux,default-trigger = "heartbeat";
+//				blink-brightness = <20>;
+//			};
+//
+//			led@1 {
+//				label = "green";
+//				reg = <1>;
+//				color = <2>; // LED_COLOR_ID_GREEN
+//				linux,default-trigger = "mtd";
+//				blink-brightness = <20>;
+//			};
+//
+//			led@2 {
+//				label = "red";
+//				reg = <2>;
+//				color = <1>; // LED_COLOR_ID_RED
+//				linux,default-trigger = "panic";
+//				// panic trigger doesn't support brightness control ... none/full only
+//			};
+//		 };
 	};
 
 	aliases {

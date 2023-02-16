@@ -8,11 +8,15 @@ ICEBRAM := icebram
 PROJ = riscv_linux
 
 PROJ_DEPS := no2misc no2ice40 no2hyperbus no2memcache
+#PROJ_DEPS := no2misc no2memcache
 PROJ_RTL_SRCS := $(addprefix rtl/, \
 	platform.v \
 	soc_bram.v \
 	sysmgr.v \
 	VexRiscv.v \
+	axi_burst_qqspi_slave.v \
+	qqspi.v \
+	ice40up5k_pll.v \
 )
 PROJ_SIM_SRCS := $(addprefix sim/, \
 	spiflash.v \
@@ -36,7 +40,7 @@ PACKAGE = sg48
 SEED ?= 0
 
 YOSYS_SYNTH_ARGS = -dffe_min_ce_use 4 # -abc2
-NEXTPNR_ARGS  = --pre-pack data/clocks.py --pre-place $(CORE_no2ice40_DIR)/sw/serdes-nextpnr-place.py --seed $(SEED)
+NEXTPNR_ARGS  = --pre-pack data/clocks.py
 NEXTPNR_ARGS += --timing-allow-fail
 
 # Include default rules
@@ -89,7 +93,7 @@ $(BUILD_TMP)/$(PROJ)_init.asc: $(BUILD_TMP)/$(PROJ).asc $(BUILD_TMP)/boot.hex $(
 bin-init: $(BUILD_TMP)/$(PROJ)_init.bin
 
 prog-init: $(BUILD_TMP)/$(PROJ)_init.bin
-	$(ICEPROG) $<
+	#$(ICEPROG) $<
 
 
 # Memory image for Simulation

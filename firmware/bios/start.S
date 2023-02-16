@@ -4,6 +4,7 @@
  * Startup code
  *
  * Copyright (C) 2021 Sylvain Munaut
+ * Copyright (c) 2023 Hirosh Dabui <hirosh@dabui.de>
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
@@ -14,9 +15,14 @@
 _start:
 
 #ifdef BOOT_DEBUG
-	// Set UART divisor
+// Set UART divisor
+// uart 1
+	li a0, 0x83000000
+	li a1,22
+	sw a1, 4(a0)
+
 	li a0, 0x81000000
-	li a1, 13
+	li a1,22
 	sw a1, 4(a0)
 
 	// Output '1'
