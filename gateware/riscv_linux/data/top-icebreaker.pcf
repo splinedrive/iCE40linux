@@ -5,30 +5,43 @@ set_io -nowarn spi_clk 15
 set_io -nowarn spi_flash_cs_n 16
 set_io -nowarn spi_ram_cs_n 37
 
+
+set_io -nowarn cen        4
+set_io -nowarn sio0_si_mosi      2
+set_io -nowarn sio1_so_miso     47
+set_io -nowarn sclk     45
+set_io -nowarn sio2      3
+set_io -nowarn sio3     48
+set_io -nowarn cs[0]    46
+set_io -nowarn cs[1]    44
+
 # Quad HyperRAM
-set_io --warn-no-port hram_dq[0] 43
-set_io --warn-no-port hram_dq[1] 38
-set_io --warn-no-port hram_dq[2] 34
-set_io --warn-no-port hram_dq[3] 31
-set_io --warn-no-port hram_dq[4] 28
-set_io --warn-no-port hram_dq[5] 32
-set_io --warn-no-port hram_dq[6] 36
-set_io --warn-no-port hram_dq[7] 42
-
-set_io --warn-no-port hram_rwds 44
-
-set_io --warn-no-port hram_ck 47
-
-set_io --warn-no-port hram_rst_n 46
-
-set_io --warn-no-port hram_cs_n[0] 2
-set_io --warn-no-port hram_cs_n[1] 48
-set_io --warn-no-port hram_cs_n[2] 4
-set_io --warn-no-port hram_cs_n[3] 3
-
+#set_io --warn-no-port hram_dq[0] 43
+#set_io --warn-no-port hram_dq[1] 38
+#set_io --warn-no-port hram_dq[2] 34
+#set_io --warn-no-port hram_dq[3] 31
+#set_io --warn-no-port hram_dq[4] 28
+#set_io --warn-no-port hram_dq[5] 32
+#set_io --warn-no-port hram_dq[6] 36
+#set_io --warn-no-port hram_dq[7] 42
+#
+#set_io --warn-no-port hram_rwds 44
+#
+#set_io --warn-no-port hram_ck 47
+#
+#set_io --warn-no-port hram_rst_n 46
+#
+#set_io --warn-no-port hram_cs_n[0] 2
+#set_io --warn-no-port hram_cs_n[1] 48
+#set_io --warn-no-port hram_cs_n[2] 4
+#set_io --warn-no-port hram_cs_n[3] 3
+#
 # UART
 set_io -nowarn uart_rx 6
 set_io -nowarn uart_tx 9
+# UART0
+set_io -nowarn uart_tx1 38
+set_io -nowarn uart_rx1 34
 
 # Clock
 set_io -nowarn clk_in 35

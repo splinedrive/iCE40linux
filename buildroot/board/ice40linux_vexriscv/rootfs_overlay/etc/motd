@@ -11,5 +11,4 @@
    32-bit RISC-V Linux running on iCE40
    - CPU   : VexRiscv
    - SoC   : no2soc
-   - Board : iCEbreaker + Quad-HyperRAM PMOD
-
+   - Board : iCEbreaker + Machdyne qspi 256MBit - PMOD

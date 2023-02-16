@@ -1,3 +1,13 @@
+iCE40 Linux with icebreaker and machdyne qspi psram pmod and second uart for ppp internet connection
+====================================================================================================
+This was a hack. Performance wasn't the goal.
+I wanted to learn howto migrate a psram based system without crossdomains etc.
+I removed the hyperram stuff, the rgb controller and using only a system clock of 24MHz.
+
+Put psram pmod from machdyne into PMOD1A and use 2 pins + gnd PMOD1B for the second uart.
+To avoid building all - check the prebuils in the image folder.
+Check my ice40linux repo for uart hack.
+
 iCE40 Linux
 ===========
 
